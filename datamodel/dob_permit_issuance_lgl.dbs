@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="dob_Permit_Issuance_lgl" id="LogicalDesign-afc" database="LogicalDesign" >
+	<schema name="INSTANCE" catalogname="dob_Permit_Issuance_lgl" >
+		<table name="dim_contruction" prior="Entity" >
+			<column name="construction_id" type="INT" jt="4" mandatory="y" />
+			<index name="pk_dim_contruction" unique="PRIMARY_KEY" >
+				<column name="construction_id" />
+			</index>
+		</table>
+		<table name="dim_date" prior="Entity" >
+			<column name="date_id" type="INT" jt="4" mandatory="y" />
+			<index name="pk_dim_date" unique="PRIMARY_KEY" >
+				<column name="date_id" />
+			</index>
+		</table>
+		<table name="dim_job" prior="Entity" >
+			<column name="job_id" type="INT" jt="4" mandatory="y" />
+			<index name="pk_dim_job" unique="PRIMARY_KEY" >
+				<column name="job_id" />
+			</index>
+		</table>
+		<table name="dim_location" prior="Entity" >
+			<column name="location_id" type="INT" jt="4" mandatory="y" />
+			<index name="pk_dim_location" unique="PRIMARY_KEY" >
+				<column name="location_id" />
+			</index>
+		</table>
+		<table name="dim_owners" prior="Entity" >
+			<column name="owners_id" type="INT" jt="4" mandatory="y" />
+			<index name="pk_dim_owners" unique="PRIMARY_KEY" >
+				<column name="owners_id" />
+			</index>
+		</table>
+		<table name="dim_permit" prior="Entity" >
+			<column name="permit_id" type="INT" jt="4" mandatory="y" />
+			<index name="pk_dim_permit" unique="PRIMARY_KEY" >
+				<column name="permit_id" />
+			</index>
+		</table>
+		<table name="dim_permitee" prior="Entity" >
+			<column name="permittees_id" type="INT" jt="4" mandatory="y" />
+			<index name="pk_dim_permitee" unique="PRIMARY_KEY" >
+				<column name="permittees_id" />
+			</index>
+		</table>
+		<table name="dim_site_safety_mgnr" prior="dim_sit" >
+			<column name="site_safety_mgnr_id" type="INT" jt="4" mandatory="y" />
+			<index name="pk_dim_site_safety_mgnr" unique="PRIMARY_KEY" >
+				<column name="site_safety_mgnr_id" />
+			</index>
+		</table>
+		<table name="dim_superintendient" prior="Entity" >
+			<column name="superintendient_id" type="INT" jt="4" mandatory="y" />
+			<index name="pk_dim_superintendient" unique="PRIMARY_KEY" >
+				<column name="superintendient_id" />
+			</index>
+		</table>
+		<table name="facts_dobpermitissuance" prior="facts_permit" >
+			<column name="fact_id" type="BIGINT" jt="-5" mandatory="y" />
+			<index name="pk_facts_permit" unique="PRIMARY_KEY" >
+				<column name="fact_id" />
+			</index>
+		</table>
+	</schema>
+	<layout name="Default Layout" id="Layout-4ea" show_relation="columns" >
+		<entity schema="dob_Permit_Issuance_lgl.INSTANCE" name="dim_contruction" color="C1D8EE" x="833" y="306" />
+		<entity schema="dob_Permit_Issuance_lgl.INSTANCE" name="dim_date" color="C1D8EE" x="289" y="731" />
+		<entity schema="dob_Permit_Issuance_lgl.INSTANCE" name="dim_job" color="C1D8EE" x="867" y="459" />
+		<entity schema="dob_Permit_Issuance_lgl.INSTANCE" name="dim_location" color="C1D8EE" x="697" y="697" />
+		<entity schema="dob_Permit_Issuance_lgl.INSTANCE" name="dim_owners" color="C1D8EE" x="221" y="425" />
+		<entity schema="dob_Permit_Issuance_lgl.INSTANCE" name="dim_permit" color="C1D8EE" x="646" y="221" />
+		<entity schema="dob_Permit_Issuance_lgl.INSTANCE" name="dim_permitee" color="C1D8EE" x="272" y="255" />
+		<entity schema="dob_Permit_Issuance_lgl.INSTANCE" name="dim_site_safety_mgnr" color="C1D8EE" x="204" y="578" />
+		<entity schema="dob_Permit_Issuance_lgl.INSTANCE" name="dim_superintendient" color="C1D8EE" x="731" y="561" />
+		<entity schema="dob_Permit_Issuance_lgl.INSTANCE" name="facts_dobpermitissuance" color="C1D8EE" x="493" y="408" />
+		<callout x="51" y="51" pointer="Round" >
+			<comment><![CDATA[This is a layout - a diagram with tools.
+- Create new entities by right-clicking the layout. 
+- Double-click entity headers to edit.
+- For a better understanding of the schema, create multiple layouts.
+- Deploy the model into the database by converting it first to the physical design.]]></comment>
+		</callout>
+	</layout>
+</project>
