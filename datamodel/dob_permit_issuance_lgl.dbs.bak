@@ -9,16 +9,6 @@
 		</table>
 		<table name="dim_date" prior="Entity" >
 			<column name="date_id" type="INT" jt="4" mandatory="y" />
-			<column name="year" type="INT" jt="4" />
-			<column name="month_number" type="INT" jt="4" />
-			<column name="quarter" type="INT" jt="4" />
-			<column name="day_number" type="INT" jt="4" />
-			<column name="day_name" type="VARCHAR" length="100" jt="12" />
-			<column name="month_name" type="VARCHAR" length="100" jt="12" />
-			<column name="week_of_the_month" type="INT" jt="4" />
-			<column name="week_of_year" type="INT" jt="4" />
-			<column name="hour_number" type="INT" jt="4" />
-			<column name="dateIdoformat" type="DATE" jt="91" />
 			<index name="pk_dim_date" unique="PRIMARY_KEY" >
 				<column name="date_id" />
 			</index>
@@ -49,10 +39,6 @@
 		</table>
 		<table name="dim_permitee" prior="Entity" >
 			<column name="permittees_id" type="INT" jt="4" mandatory="y" />
-			<column name="permittees_first_name" type="VARCHAR" length="100" jt="12" />
-			<column name="permittees_last_name" type="VARCHAR" length="100" jt="12" />
-			<column name="permitees_business_name" type="VARCHAR" length="100" jt="12" />
-			<column name="permitees_phone_number" type="INT" jt="4" />
 			<index name="pk_dim_permitee" unique="PRIMARY_KEY" >
 				<column name="permittees_id" />
 			</index>
@@ -71,11 +57,6 @@
 		</table>
 		<table name="facts_dobpermitissuance" prior="facts_permit" >
 			<column name="fact_id" type="BIGINT" jt="-5" mandatory="y" />
-			<column name="filing_date" type="DATE" jt="91" />
-			<column name="issuance_date" type="DATE" jt="91" />
-			<column name="expiration_date" type="DATE" jt="91" />
-			<column name="job_start_date" type="DATE" jt="91" />
-			<column name="dob_run_date" type="DATE" jt="91" />
 			<index name="pk_facts_permit" unique="PRIMARY_KEY" >
 				<column name="fact_id" />
 			</index>
