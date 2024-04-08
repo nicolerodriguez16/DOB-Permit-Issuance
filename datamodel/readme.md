@@ -1,0 +1,1 @@
+The dimensional model visualizes the Department of Building (DOB) Permit Issuance process as a star schema.  This model is structured around a facts table that calls on other nine dimensions. These dimensions include a permittee, date, permit, building, jobs, owners, site safety manager, location, and superintendent
