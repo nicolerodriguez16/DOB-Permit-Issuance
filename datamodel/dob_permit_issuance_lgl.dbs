@@ -1,10 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <project name="dob_Permit_Issuance_lgl" id="LogicalDesign-afc" database="LogicalDesign" >
 	<schema name="INSTANCE" catalogname="dob_Permit_Issuance_lgl" >
-		<table name="dim_contruction" prior="Entity" >
-			<column name="construction_id" type="INT" jt="4" mandatory="y" />
+		<table name="dim_building" prior="dim_contruction" >
+			<column name="building_id" prior="construction_id" type="INT" jt="4" mandatory="y" />
+			<column name="bin_number" type="INT" jt="4" />
+			<column name="house_number" type="INT" jt="4" />
+			<column name="self_cert" type="VARCHAR" length="250" jt="12" />
+			<column name="bldg_type" type="VARCHAR" length="250" jt="12" />
+			<column name="residential" type="VARCHAR" length="250" jt="12" />
+			<column name="job_start_date" type="DATE" jt="91" />
+			<column name="dob_run_date" type="DATE" jt="91" />
+			<column name="filling_date" type="DATE" jt="91" />
 			<index name="pk_dim_contruction" unique="PRIMARY_KEY" >
-				<column name="construction_id" />
+				<column name="building_id" />
 			</index>
 		</table>
 		<table name="dim_date" prior="Entity" >
@@ -25,24 +33,59 @@
 		</table>
 		<table name="dim_job" prior="Entity" >
 			<column name="job_id" type="INT" jt="4" mandatory="y" />
+			<column name="job_number" type="VARCHAR" length="250" jt="12" />
+			<column name="job_doc_number" type="VARCHAR" length="250" jt="12" />
+			<column name="job_type" type="VARCHAR" length="250" jt="12" />
 			<index name="pk_dim_job" unique="PRIMARY_KEY" >
 				<column name="job_id" />
 			</index>
 		</table>
 		<table name="dim_location" prior="Entity" >
 			<column name="location_id" type="INT" jt="4" mandatory="y" />
+			<column name="latitude" type="INT" jt="4" />
+			<column name="longitude" type="INT" jt="4" />
+			<column name="council_district" type="INT" jt="4" />
+			<column name="census_tract" type="VARCHAR" length="250" jt="12" />
+			<column name="nta_name" type="VARCHAR" length="250" jt="12" />
+			<column name="borough" type="VARCHAR" length="250" jt="12" />
+			<column name="street_name" type="VARCHAR" length="250" jt="12" />
+			<column name="block" type="VARCHAR" length="250" jt="12" />
+			<column name="lot" type="VARCHAR" length="250" jt="12" />
+			<column name="community_board" type="VARCHAR" length="250" jt="12" />
+			<column name="zip_code" type="VARCHAR" length="250" jt="12" />
 			<index name="pk_dim_location" unique="PRIMARY_KEY" >
 				<column name="location_id" />
 			</index>
 		</table>
 		<table name="dim_owners" prior="Entity" >
 			<column name="owners_id" type="INT" jt="4" mandatory="y" />
+			<column name="owners_business_name" type="VARCHAR" length="250" jt="12" />
+			<column name="owners_first_name" type="VARCHAR" length="250" jt="12" />
+			<column name="owners_last_name" type="VARCHAR" length="250" jt="12" />
+			<column name="owners_house_number" type="VARCHAR" length="250" jt="12" />
+			<column name="owners_house_street_name" type="VARCHAR" length="250" jt="12" />
+			<column name="owners_house_city" type="VARCHAR" length="250" jt="12" />
+			<column name="owners_house_state" type="VARCHAR" length="250" jt="12" />
+			<column name="owners_house_zipcode" type="VARCHAR" length="250" jt="12" />
+			<column name="owners_phone_number" type="VARCHAR" length="250" jt="12" />
+			<column name="owners_business_type" type="VARCHAR" length="250" jt="12" />
+			<column name="non_profit" type="VARCHAR" length="250" jt="12" />
 			<index name="pk_dim_owners" unique="PRIMARY_KEY" >
 				<column name="owners_id" />
 			</index>
 		</table>
 		<table name="dim_permit" prior="Entity" >
 			<column name="permit_id" type="INT" jt="4" mandatory="y" />
+			<column name="permit_type" type="VARCHAR" length="250" jt="12" />
+			<column name="permit_sequence" type="VARCHAR" length="250" jt="12" />
+			<column name="permit_subtype" type="VARCHAR" length="250" jt="12" />
+			<column name="permit_status" type="VARCHAR" length="250" jt="12" />
+			<column name="filing_status" type="CHAR" length="1" jt="1" />
+			<column name="work_type" type="VARCHAR" length="250" jt="12" />
+			<column name="oil_gas" type="VARCHAR" length="250" jt="12" />
+			<column name="site_fill" type="VARCHAR" length="250" jt="12" />
+			<column name="issuance_date" type="DATE" jt="91" />
+			<column name="expiration_date" type="DATE" jt="91" />
 			<index name="pk_dim_permit" unique="PRIMARY_KEY" >
 				<column name="permit_id" />
 			</index>
@@ -53,45 +96,90 @@
 			<column name="permittees_last_name" type="VARCHAR" length="100" jt="12" />
 			<column name="permitees_business_name" type="VARCHAR" length="100" jt="12" />
 			<column name="permitees_phone_number" type="INT" jt="4" />
+			<column name="permitees_license_type" type="VARCHAR" length="250" jt="12" />
+			<column name="permitees_license_number" type="VARCHAR" length="250" jt="12" />
+			<column name="act_as_superintendient" type="VARCHAR" length="250" jt="12" />
+			<column name="permitees_other_title" type="VARCHAR" length="250" jt="12" />
+			<column name="HIC_license" type="VARCHAR" length="250" jt="12" />
 			<index name="pk_dim_permitee" unique="PRIMARY_KEY" >
 				<column name="permittees_id" />
 			</index>
 		</table>
 		<table name="dim_site_safety_mgnr" prior="dim_sit" >
 			<column name="site_safety_mgnr_id" type="INT" jt="4" mandatory="y" />
+			<column name="site_safety_mgnr_first_name" prior="site_safety_first_name" type="VARCHAR" length="250" jt="12" />
+			<column name="site_safety_mgrs_last_name" type="VARCHAR" length="250" jt="12" />
+			<column name="site_safety_mgr_business_name" type="VARCHAR" length="250" jt="12" />
 			<index name="pk_dim_site_safety_mgnr" unique="PRIMARY_KEY" >
 				<column name="site_safety_mgnr_id" />
 			</index>
 		</table>
 		<table name="dim_superintendient" prior="Entity" >
 			<column name="superintendient_id" type="INT" jt="4" mandatory="y" />
+			<column name="superintendent_first_name" type="VARCHAR" length="250" jt="12" />
+			<column name="superintendent_last_name" type="VARCHAR" length="250" jt="12" />
+			<column name="superintendent_business_name" type="VARCHAR" length="250" jt="12" />
 			<index name="pk_dim_superintendient" unique="PRIMARY_KEY" >
 				<column name="superintendient_id" />
 			</index>
 		</table>
 		<table name="facts_dobpermitissuance" prior="facts_permit" >
 			<column name="fact_id" type="BIGINT" jt="-5" mandatory="y" />
-			<column name="filing_date" type="DATE" jt="91" />
-			<column name="issuance_date" type="DATE" jt="91" />
-			<column name="expiration_date" type="DATE" jt="91" />
-			<column name="job_start_date" type="DATE" jt="91" />
-			<column name="dob_run_date" type="DATE" jt="91" />
+			<column name="job_id" type="INT" jt="4" mandatory="y" />
+			<column name="superintendient_id" type="INT" jt="4" mandatory="y" />
+			<column name="location_id" type="INT" jt="4" mandatory="y" />
+			<column name="site_safety_mgnr_id" type="INT" jt="4" mandatory="y" />
+			<column name="owners_id" type="INT" jt="4" mandatory="y" />
+			<column name="date_id" type="INT" jt="4" mandatory="y" />
+			<column name="permittees_id" type="INT" jt="4" mandatory="y" />
+			<column name="permit_id" type="INT" jt="4" mandatory="y" />
+			<column name="building_id" type="INT" jt="4" mandatory="y" />
 			<index name="pk_facts_permit" unique="PRIMARY_KEY" >
 				<column name="fact_id" />
 			</index>
+			<index name="unq_location_id" unique="UNIQUE_INDEX" >
+				<column name="location_id" />
+			</index>
+			<fk name="fk_facts_dobpermitissuance_dim_job" virtual="y" to_schema="dob_Permit_Issuance_lgl.INSTANCE" to_table="dim_job" type="NonIdentifying" mandatory="y" cardinality="OneMore" range_from="0" range_to="0" >
+				<fk_column name="job_id" pk="job_id" />
+			</fk>
+			<fk name="fk_facts_dobpermitissuance_dim_superintendient" virtual="y" to_schema="dob_Permit_Issuance_lgl.INSTANCE" to_table="dim_superintendient" type="NonIdentifying" mandatory="y" cardinality="OneMore" range_from="0" range_to="0" >
+				<fk_column name="superintendient_id" pk="superintendient_id" />
+			</fk>
+			<fk name="fk_facts_dobpermitissuance_dim_location" virtual="y" to_schema="dob_Permit_Issuance_lgl.INSTANCE" to_table="dim_location" type="NonIdentifying" mandatory="y" cardinality="OneMore" range_from="0" range_to="0" >
+				<fk_column name="location_id" pk="location_id" />
+			</fk>
+			<fk name="fk_facts_dobpermitissuance_dim_site_safety_mgnr" virtual="y" to_schema="dob_Permit_Issuance_lgl.INSTANCE" to_table="dim_site_safety_mgnr" type="NonIdentifying" mandatory="y" cardinality="OneMore" range_from="0" range_to="0" >
+				<fk_column name="site_safety_mgnr_id" pk="site_safety_mgnr_id" />
+			</fk>
+			<fk name="fk_facts_dobpermitissuance_dim_owners" virtual="y" to_schema="dob_Permit_Issuance_lgl.INSTANCE" to_table="dim_owners" type="NonIdentifying" mandatory="y" cardinality="OneMore" range_from="0" range_to="0" >
+				<fk_column name="owners_id" pk="owners_id" />
+			</fk>
+			<fk name="fk_facts_dobpermitissuance_dim_date" virtual="y" to_schema="dob_Permit_Issuance_lgl.INSTANCE" to_table="dim_date" type="NonIdentifying" mandatory="y" cardinality="OneMore" range_from="0" range_to="0" >
+				<fk_column name="date_id" pk="date_id" />
+			</fk>
+			<fk name="fk_facts_dobpermitissuance_dim_permitee" virtual="y" to_schema="dob_Permit_Issuance_lgl.INSTANCE" to_table="dim_permitee" type="NonIdentifying" mandatory="y" cardinality="OneMore" range_from="0" range_to="0" >
+				<fk_column name="permittees_id" pk="permittees_id" />
+			</fk>
+			<fk name="fk_facts_dobpermitissuance_dim_permit" virtual="y" to_schema="dob_Permit_Issuance_lgl.INSTANCE" to_table="dim_permit" type="NonIdentifying" mandatory="y" cardinality="OneMore" range_from="0" range_to="0" >
+				<fk_column name="permit_id" pk="permit_id" />
+			</fk>
+			<fk name="fk_facts_dobpermitissuance_dim_building" virtual="y" to_schema="dob_Permit_Issuance_lgl.INSTANCE" to_table="dim_building" type="NonIdentifying" mandatory="y" cardinality="OneMore" range_from="0" range_to="0" >
+				<fk_column name="building_id" pk="building_id" />
+			</fk>
 		</table>
 	</schema>
 	<layout name="Default Layout" id="Layout-4ea" show_relation="columns" >
-		<entity schema="dob_Permit_Issuance_lgl.INSTANCE" name="dim_contruction" color="C1D8EE" x="833" y="306" />
-		<entity schema="dob_Permit_Issuance_lgl.INSTANCE" name="dim_date" color="C1D8EE" x="289" y="731" />
-		<entity schema="dob_Permit_Issuance_lgl.INSTANCE" name="dim_job" color="C1D8EE" x="867" y="459" />
-		<entity schema="dob_Permit_Issuance_lgl.INSTANCE" name="dim_location" color="C1D8EE" x="697" y="697" />
-		<entity schema="dob_Permit_Issuance_lgl.INSTANCE" name="dim_owners" color="C1D8EE" x="221" y="425" />
-		<entity schema="dob_Permit_Issuance_lgl.INSTANCE" name="dim_permit" color="C1D8EE" x="646" y="221" />
-		<entity schema="dob_Permit_Issuance_lgl.INSTANCE" name="dim_permitee" color="C1D8EE" x="272" y="255" />
-		<entity schema="dob_Permit_Issuance_lgl.INSTANCE" name="dim_site_safety_mgnr" color="C1D8EE" x="204" y="578" />
-		<entity schema="dob_Permit_Issuance_lgl.INSTANCE" name="dim_superintendient" color="C1D8EE" x="731" y="561" />
-		<entity schema="dob_Permit_Issuance_lgl.INSTANCE" name="facts_dobpermitissuance" color="C1D8EE" x="493" y="408" />
+		<entity schema="dob_Permit_Issuance_lgl.INSTANCE" name="dim_building" color="C1D8EE" x="918" y="221" />
+		<entity schema="dob_Permit_Issuance_lgl.INSTANCE" name="dim_date" color="C1D8EE" x="119" y="391" />
+		<entity schema="dob_Permit_Issuance_lgl.INSTANCE" name="dim_job" color="C1D8EE" x="935" y="442" />
+		<entity schema="dob_Permit_Issuance_lgl.INSTANCE" name="dim_location" color="C1D8EE" x="765" y="782" />
+		<entity schema="dob_Permit_Issuance_lgl.INSTANCE" name="dim_owners" color="C1D8EE" x="153" y="663" />
+		<entity schema="dob_Permit_Issuance_lgl.INSTANCE" name="dim_permit" color="C1D8EE" x="680" y="102" />
+		<entity schema="dob_Permit_Issuance_lgl.INSTANCE" name="dim_permitee" color="C1D8EE" x="323" y="187" />
+		<entity schema="dob_Permit_Issuance_lgl.INSTANCE" name="dim_site_safety_mgnr" color="C1D8EE" x="408" y="867" />
+		<entity schema="dob_Permit_Issuance_lgl.INSTANCE" name="dim_superintendient" color="C1D8EE" x="901" y="629" />
+		<entity schema="dob_Permit_Issuance_lgl.INSTANCE" name="facts_dobpermitissuance" color="C1D8EE" x="578" y="476" />
 		<callout x="51" y="51" pointer="Round" >
 			<comment><![CDATA[This is a layout - a diagram with tools.
 - Create new entities by right-clicking the layout. 
