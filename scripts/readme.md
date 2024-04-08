@@ -1,0 +1,1 @@
+The scripts demostrated the process of importing the Department of Building(DOB) Permit Issuance data into Microsoft Azure.  The data was downloaded and exported on 4/07/24.
